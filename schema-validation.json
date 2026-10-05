@@ -1,0 +1,25 @@
+{
+  "checked_at_utc": "2026-10-05T08:22:41.558694+00:00",
+  "tool": "genvm-linter",
+  "tool_version": "0.11.0",
+  "genvm_version": "v0.2.16",
+  "source": "contracts/evidence_citation_registry.py",
+  "source_sha256": "f8e41883f4872061c999671219d8650c65e3a8ff1650ff71c3e1a9d3feb41e56",
+  "command": "genvm-lint check contracts/evidence_citation_registry.py --json",
+  "exit_code": 0,
+  "result": {
+    "ok": true,
+    "lint": {
+      "ok": true,
+      "passed": 3
+    },
+    "validate": {
+      "ok": true,
+      "contract": "EvidenceCitationRegistry",
+      "methods": 6,
+      "view_methods": 3,
+      "write_methods": 3,
+      "ctor_params": 0
+    }
+  }
+}
