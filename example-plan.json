@@ -1,0 +1,81 @@
+{
+  "additional_accounts": [],
+  "steps": [
+    {
+      "method": "register_document",
+      "args": [
+        "Offline-mode release note",
+        "Draft: Offline mode is available in version 1. Correction: that draft is false. Version 1 requires an internet connection. Version 2 supports offline mode."
+      ]
+    },
+    {
+      "method": "submit_citation",
+      "args": [
+        "0",
+        "Offline mode is available in version 1.",
+        "Offline mode is available in version 1.",
+        7
+      ]
+    },
+    {
+      "method": "audit",
+      "args": [
+        "0"
+      ],
+      "reads_after": [
+        {
+          "method": "get_citation",
+          "args": [
+            "0"
+          ],
+          "expected": {
+            "state": "REJECTED",
+            "assessment": {
+              "quote_relation": "SUPPORTS",
+              "context_relation": "CONTRADICTS"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "method": "submit_citation",
+      "args": [
+        "0",
+        "Version 2 supports offline mode.",
+        "Version 2 supports offline mode.",
+        123
+      ]
+    },
+    {
+      "method": "audit",
+      "args": [
+        "1"
+      ]
+    }
+  ],
+  "final_reads": [
+    {
+      "method": "get_citation",
+      "args": [
+        "0"
+      ],
+      "expected": {
+        "state": "REJECTED"
+      }
+    },
+    {
+      "method": "get_citation",
+      "args": [
+        "1"
+      ],
+      "expected": {
+        "state": "VERIFIED",
+        "assessment": {
+          "quote_relation": "SUPPORTS",
+          "context_relation": "CONSISTENT"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "verified_at_utc": "2026-10-05T08:28:24.210664+00:00",
+  "network": "studionet",
+  "chain_id": 61999,
+  "rpc_url": "https://studio.genlayer.com/api",
+  "contract_address": "0x2B91C2029973Da08Ab024FBc6f5760e52db7f0b4",
+  "transaction_hash": "0xf9c9e60e00e3f95e1a05f3c183a0cb80c0c97619bf303fc0b658308f6d059064",
+  "deployment_status": "FINALIZED",
+  "deployment_execution": "SUCCESS",
+  "deployed_source_matches_repository": true,
+  "official_linter_source_matches_deployment": true,
+  "official_linter_evidence": "schema-validation.json",
+  "source_sha256": "f8e41883f4872061c999671219d8650c65e3a8ff1650ff71c3e1a9d3feb41e56",
+  "source_bytes": 7050,
+  "schema": {
+    "ctor": {
+      "params": [],
+      "kwparams": {}
+    },
+    "methods": {
+      "audit": {
+        "params": [
+          [
+            "citation_id",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "string",
+        "payable": false
+      },
+      "get_citation": {
+        "params": [
+          [
+            "citation_id",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": true,
+        "ret": "string"
+      },
+      "get_count": {
+        "params": [],
+        "kwparams": {},
+        "readonly": true,
+        "ret": "int"
+      },
+      "get_document": {
+        "params": [
+          [
+            "document_id",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": true,
+        "ret": "string"
+      },
+      "register_document": {
+        "params": [
+          [
+            "title",
+            "string"
+          ],
+          [
+            "body",
+            "string"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "string",
+        "payable": false
+      },
+      "submit_citation": {
+        "params": [
+          [
+            "document_id",
+            "string"
+          ],
+          [
+            "claim",
+            "string"
+          ],
+          [
+            "quote",
+            "string"
+          ],
+          [
+            "start",
+            "int"
+          ]
+        ],
+        "kwparams": {},
+        "readonly": false,
+        "ret": "string",
+        "payable": false
+      }
+    }
+  },
+  "read_call": {
+    "method": "get_count",
+    "args": [],
+    "result": 0
+  },
+  "authentication": "none; public RPC; no browser session or saved key"
+}

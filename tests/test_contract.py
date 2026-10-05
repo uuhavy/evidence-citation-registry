@@ -96,3 +96,14 @@ def test_immutable_and_document_isolation(pending,direct_vm):
 def test_missing(contract,direct_vm):
     for fn,args in [(contract.get_document,["404"]),(contract.get_citation,["404"]),(contract.audit,["404"]),(contract.submit_citation,["404",CLAIM,QUOTE,0])]:
         with direct_vm.expect_revert(): fn(*args)
+
+def test_provider_exception_preserves_pending(pending,direct_vm,monkeypatch):
+    from genlayer import gl
+    def unavailable(*args,**kwargs):
+        raise TimeoutError("provider unavailable")
+    with monkeypatch.context() as patch:
+        patch.setattr(gl.nondet,"exec_prompt",unavailable)
+        with direct_vm.expect_revert("assessment unavailable or invalid"):
+            pending.audit("0")
+    assert json.loads(pending.get_citation("0"))["state"]=="PENDING"
+    mock(direct_vm); pending.audit("0")

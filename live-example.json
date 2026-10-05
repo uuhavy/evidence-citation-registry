@@ -1,0 +1,228 @@
+{
+  "network": "studionet",
+  "contract_address": "0x2B91C2029973Da08Ab024FBc6f5760e52db7f0b4",
+  "accounts": {
+    "deployer": "0x0BeAC6cE2451C3FC6623cE2D2cd55909E610C770"
+  },
+  "plan": {
+    "additional_accounts": [],
+    "steps": [
+      {
+        "method": "register_document",
+        "args": [
+          "Offline-mode release note",
+          "Draft: Offline mode is available in version 1. Correction: that draft is false. Version 1 requires an internet connection. Version 2 supports offline mode."
+        ]
+      },
+      {
+        "method": "submit_citation",
+        "args": [
+          "0",
+          "Offline mode is available in version 1.",
+          "Offline mode is available in version 1.",
+          7
+        ]
+      },
+      {
+        "method": "audit",
+        "args": [
+          "0"
+        ],
+        "reads_after": [
+          {
+            "method": "get_citation",
+            "args": [
+              "0"
+            ],
+            "expected": {
+              "state": "REJECTED",
+              "assessment": {
+                "quote_relation": "SUPPORTS",
+                "context_relation": "CONTRADICTS"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "method": "submit_citation",
+        "args": [
+          "0",
+          "Version 2 supports offline mode.",
+          "Version 2 supports offline mode.",
+          123
+        ]
+      },
+      {
+        "method": "audit",
+        "args": [
+          "1"
+        ]
+      }
+    ],
+    "final_reads": [
+      {
+        "method": "get_citation",
+        "args": [
+          "0"
+        ],
+        "expected": {
+          "state": "REJECTED"
+        }
+      },
+      {
+        "method": "get_citation",
+        "args": [
+          "1"
+        ],
+        "expected": {
+          "state": "VERIFIED",
+          "assessment": {
+            "quote_relation": "SUPPORTS",
+            "context_relation": "CONSISTENT"
+          }
+        }
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "method": "register_document",
+      "args": [
+        "Offline-mode release note",
+        "Draft: Offline mode is available in version 1. Correction: that draft is false. Version 1 requires an internet connection. Version 2 supports offline mode."
+      ],
+      "sender": "0x0BeAC6cE2451C3FC6623cE2D2cd55909E610C770",
+      "hash": "0xa0a501a658907ea3d8bed0ff159b9c66f07d6dbdfd754ab314e2c09b2659997d",
+      "status": "FINALIZED",
+      "execution_result": "SUCCESS",
+      "reads_after": [],
+      "checks_complete": true
+    },
+    {
+      "method": "submit_citation",
+      "args": [
+        "0",
+        "Offline mode is available in version 1.",
+        "Offline mode is available in version 1.",
+        7
+      ],
+      "sender": "0x0BeAC6cE2451C3FC6623cE2D2cd55909E610C770",
+      "hash": "0x9ecfa1efe96932d5d80ed1196e942460ab92b86a2359654c794de5ef2f43118d",
+      "status": "FINALIZED",
+      "execution_result": "SUCCESS",
+      "reads_after": [],
+      "checks_complete": true
+    },
+    {
+      "method": "audit",
+      "args": [
+        "0"
+      ],
+      "sender": "0x0BeAC6cE2451C3FC6623cE2D2cd55909E610C770",
+      "hash": "0x64f584dbd6243f102b1d5d4b52bf3ceac81767a3d4367b1adc19ea4b8395952f",
+      "status": "FINALIZED",
+      "execution_result": "SUCCESS",
+      "reads_after": [
+        {
+          "method": "get_citation",
+          "args": [
+            "0"
+          ],
+          "actual": {
+            "assessment": {
+              "context_relation": "CONTRADICTS",
+              "quote_relation": "SUPPORTS",
+              "reason": "The exact quote matches the claim verbatim, so the quote alone supports it. But the full context immediately corrects that draft as false and states version 1 requires an internet connection; only version 2 supports offline mode.",
+              "verdict": "REJECTED"
+            },
+            "citation_id": "0",
+            "claim": "Offline mode is available in version 1.",
+            "document_id": "0",
+            "end": 46,
+            "quote": "Offline mode is available in version 1.",
+            "start": 7,
+            "state": "REJECTED",
+            "submitter": "0x0BeAC6cE2451C3FC6623cE2D2cd55909E610C770"
+          }
+        }
+      ],
+      "checks_complete": true
+    },
+    {
+      "method": "submit_citation",
+      "args": [
+        "0",
+        "Version 2 supports offline mode.",
+        "Version 2 supports offline mode.",
+        123
+      ],
+      "sender": "0x0BeAC6cE2451C3FC6623cE2D2cd55909E610C770",
+      "hash": "0x780b4eb6a19a008dc21d923b8b02ed56c97a7ab092bd47114fdba24651a96b8a",
+      "status": "FINALIZED",
+      "execution_result": "SUCCESS",
+      "reads_after": [],
+      "checks_complete": true
+    },
+    {
+      "method": "audit",
+      "args": [
+        "1"
+      ],
+      "sender": "0x0BeAC6cE2451C3FC6623cE2D2cd55909E610C770",
+      "hash": "0xc18de24b3614a41742119f183cd5576e089982a9372200ffa737259195266c5d",
+      "status": "FINALIZED",
+      "execution_result": "SUCCESS",
+      "reads_after": [],
+      "checks_complete": true
+    }
+  ],
+  "result_kind": "REAL public execution of fictional inputs; no mocks; leader_only=False",
+  "final_reads": [
+    {
+      "method": "get_citation",
+      "args": [
+        "0"
+      ],
+      "actual": {
+        "assessment": {
+          "context_relation": "CONTRADICTS",
+          "quote_relation": "SUPPORTS",
+          "reason": "The exact quote matches the claim verbatim, so the quote alone supports it. But the full context immediately corrects that draft as false and states version 1 requires an internet connection; only version 2 supports offline mode.",
+          "verdict": "REJECTED"
+        },
+        "citation_id": "0",
+        "claim": "Offline mode is available in version 1.",
+        "document_id": "0",
+        "end": 46,
+        "quote": "Offline mode is available in version 1.",
+        "start": 7,
+        "state": "REJECTED",
+        "submitter": "0x0BeAC6cE2451C3FC6623cE2D2cd55909E610C770"
+      }
+    },
+    {
+      "method": "get_citation",
+      "args": [
+        "1"
+      ],
+      "actual": {
+        "assessment": {
+          "context_relation": "CONSISTENT",
+          "quote_relation": "SUPPORTS",
+          "reason": "The quote exactly matches the claim. The full context shows a correction that invalidates a draft statement about version 1, but the corrected context explicitly states that version 2 supports offline mode, which is consistent with the claim. No cherry-picking or misattribution is present.",
+          "verdict": "VERIFIED"
+        },
+        "citation_id": "1",
+        "claim": "Version 2 supports offline mode.",
+        "document_id": "0",
+        "end": 155,
+        "quote": "Version 2 supports offline mode.",
+        "start": 123,
+        "state": "VERIFIED",
+        "submitter": "0x0BeAC6cE2451C3FC6623cE2D2cd55909E610C770"
+      }
+    }
+  ],
+  "verified_at_utc": "2026-10-05T08:41:52.556239+00:00"
+}
